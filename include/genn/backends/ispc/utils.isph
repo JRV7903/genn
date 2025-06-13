@@ -1,0 +1,41 @@
+#ifndef GENN_BACKEND_ISPC_UTILS_ISPH
+#define GENN_BACKEND_ISPC_UTILS_ISPH
+
+// Helper functions for random number generation in ISPC
+// These will be implemented in a separate .ispc file
+//This is because C++ doesn't support these types(uniform/varying etc.)
+
+// Generates a uniform random number between 0 and 1
+export uniform float randUniform();
+export varying float randUniform_varying();
+
+// Generates a normal distributed random number (mean=0, stdev=1)
+export uniform float randNormal();
+export varying float randNormal_varying();
+
+// Generates an exponentially distributed random number (lambda=1)
+export uniform float randExponential();
+export varying float randExponential_varying();
+
+// Generates a log-normal distributed random number
+export uniform float randLogNormal(uniform float mean, uniform float stdev);
+export varying float randLogNormal_varying(varying float mean, varying float stdev);
+
+// Generates a gamma distributed random number
+export uniform float randGamma(uniform float shape);
+export varying float randGamma_varying(varying float shape);
+
+// Random seed initialization
+export void initRNG(uniform unsigned int seed);
+
+// Math utilities
+
+// Atomically add value to location and return the old value
+export uniform float atomicAdd(uniform float * uniform location, uniform float value);
+export varying float atomicAdd_varying(uniform float * varying location, varying float value);
+
+// Atomically OR value to location and return the old value
+export uniform int atomicOr(uniform int * uniform location, uniform int value);
+export varying int atomicOr_varying(uniform int * varying location, varying int value);
+
+#endif // GENN_BACKEND_ISPC_UTILS_ISPH 
